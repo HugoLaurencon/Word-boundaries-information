@@ -41,7 +41,7 @@ One simply needs to move the directory ```CPC_audio/cpc/``` to ```zerospeech2021
 
 # Organization of this repository
 
-This repository contains the code used to create the different tasks, create the quantized (inputs of the model) for the different models and evaluate the models on these tasks.
+This repository contains the code used to create the different tasks and evaluate the models on them.
 
 For almost every file, some commented lines at the end show examples of how functions were called to obtained what we have.
 
