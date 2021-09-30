@@ -43,7 +43,7 @@ One simply needs to move the directory ```CPC_audio/cpc/``` to ```zerospeech2021
 
 This repository contains the code used to create the different tasks and evaluate the models on them.
 
-For almost every file, some commented lines at the end show examples of how functions were called to obtained what we have.
+For almost every file, some commented lines at the end show examples of how functions were called.
 
 The file ```Word-boundaries-information/get_quantized/get_quantized.ipynb``` is a jupyter notebook file, and can be ideally opened with Google Colab, which makes it very easy to install all the dependencies.
 
