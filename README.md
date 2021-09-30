@@ -60,15 +60,21 @@ The are two types of tasks, the similarity tasks and the score tasks.
 ### Similarity tasks
 
 The similarity tasks consist of ABX tests stored in a ```.txt``` file, where each line represents a different test.
+
 On each line, a certain number of words, each separated by a space, are written.
+
 The first word corresponds to the word A, the second word to the word X, and all the following words to potential word B for the ABX test.
+
 The text is always written in lowercase letters.
 
 ### Score tasks
 
 The scores tasks consist of comparision of pairs including a correct sentence and an incorrect one.
+
 The task is stored in a ```.txt``` file, where each line represents a different pair.
+
 Each line is written in the format ```code_correct_sentence,code_incorrect_sentence,correct_sentence,incorrect_sentence```, where the code is unique for a sentence, correct or incorrect, and allows to identify it.
+
 Pairs are organized by blocks such that they are balanced, which means that it is not possible to find a biais to obtain a better score than random within a block.
 The text is always written in lowercase letters.
 
