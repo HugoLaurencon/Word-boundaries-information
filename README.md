@@ -173,6 +173,8 @@ fairseq-train --fp16 /data-bin \
 
 where ```--update-freq``` should be equal to ```128/n``` with ```n``` the number of GPU (we used 8 GPU), ```--tokens-per-sample``` and ```--max-positions``` should be almost equal to the maximum number of tokens occurring in a sentence of the training set, ```--total-num-update``` and ```--max-update``` is ```150000``` for the phoneme models and ```50000``` for the word model, ```--warmup-updates``` is  ```--total-num-update/10```.
 
+For a training with an exact masking on phone BERT, add to this command the arguments ```--mask-whole-words --bpe wwm_phoneme```.
+
 On this notebook ```Word-boundaries-information/get_quantized/get_quantized.ipynb```, there are also the codes used to train the different tokenizers for BPE models, and to obtain the different encodings for onehot and dp parse models. 
 
 
@@ -215,6 +217,8 @@ python /zerospeech2021_baseline/scripts/compute_score_BERT.py \
 ```
 
 where the first number ```10000``` stands for the number of masks to be made for each sentence, the second number ```100``` stands for the number of masked sentences (among ```10000``` here) to be considered in each batch, and ```--batchsen_size``` the number of different initial sentences to be considered in each batch (the total batch size is then ```100*batchsen_size``` here). It is recommended to keep ```--batchsen_size``` to ```1``` to avoid memory issues.
+
+If the model was trained with non default parameters, for example with an exact masking, it has to be specified as arguments to this command in the same way it was specified for the command used for the training. See ```python /zerospeech2021_baseline/scripts/compute_score_BERT.py --help``` for the list of possible arguments.
 
 The output format is a ```.txt``` file where each line corresponds to a sentence. Each line starts with the code identifying the sentence, following by the averaged reconstruction loss score and the uncertainty (computed as the division of the standard deviation of the reconstruction loss scores for this sentence by the square root of the number of masks used).
 
