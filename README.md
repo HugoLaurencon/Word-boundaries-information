@@ -135,10 +135,42 @@ In this notebook, there are different sections corresponding to the different mo
 Make sure to run each cell of the notebook first, because some functions used to obtain quantized for a certain model are often reused in functions to obtain quantized for other models.
 
 
-#### Creation of quantized for the training of text models
+### Creation of quantized for the training of text models
 
 The file ```Word-boundaries-information/get_quantized/get_quantized.ipynb``` is used to generate quantized for tasks for text models, but it can also be used to generate quantized for the training of text models, which are basically the train, dev, ant test sets of the corpus of LibriSpeech in the format of the text model considered (for example, sequences of phonemes with no boundaries between the words for the phone nobound model).
 
 This can be easily done with a small hack of transforming the text corpus of LibriSpeech into the format of a score task, where each line contains two random codes and two sentences of Librispeech. We can then compute the quantized and remove the codes to obtain the results used to train a model.
+
+The format of inputs for training text models is ```.txt``` files organized by lines, where on each line tokens are separated by a space.
+
+Then, the first thing is to do is to preprocess this data with the following command:
+
+```bash
+fairseq-preprocess --only-source \
+    --trainpref ../quantized/quantized_train.txt \
+    --validpref ../quantized/quantizd_dev.txt \
+    --testpref ../quantized/quantized_test.txt \
+    --destdir ../data-bin \
+    --workers 20
+```
+
+and finally the training is done with the following command (hyperparameters may vary regarding the model considered):
+
+```bash
+fairseq-train --fp16 /data-bin \
+    --task masked_lm --criterion masked_lm \
+    --save-dir /checkpoints \
+    --keep-last-epochs 1 \
+    --num-workers 1 \
+    --arch roberta_small \
+    --optimizer adam --adam-betas '(0.9, 0.98)' --adam-eps 1e-06 --clip-norm 0.0 \
+    --lr-scheduler polynomial_decay --lr 0.0005 --total-num-update 150000 --warmup-updates 15000 \
+    --dropout 0.1 --attention-dropout 0.1 --weight-decay 0.01 \
+    --sample-break-mode eos --tokens-per-sample 110 --max-positions 110 \
+    --batch-size 16  --update-freq 16 --max-update 150000 \
+    --log-format simple --log-interval 1 --skip-invalid-size-inputs-valid-test
+```
+
+where ```--update-freq``` should be equal to ```128/n``` with ```n``` the number of GPU (we used 8 GPU), ```--tokens-per-sample``` and ```--max-positions``` should be almost equal to the maximum number of tokens occurring in a sentence of the training set, ```--total-num-update``` and ```--max-update``` is ```150000``` for the phoneme models and ```50000``` for the word model, ```--warmup-updates``` is  ```--total-num-update/10```.
 
 On this notebook, there are also the codes used to train the different tokenizers for BPE models, and to obtain the different encodings for onehot and dp parse models. 
