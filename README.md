@@ -218,6 +218,4 @@ where the first number ```10000``` stands for the number of masks to be made for
 
 The output format is a ```.txt``` file where each line corresponds to a sentence. Each line starts with the code identifying the sentence, following by the averaged reconstruction loss score and the uncertainty (computed as the division of the standard deviation of the reconstruction loss scores for this sentence by the square root of the number of masks used).
 
-changer param d'entrainement
-
-scores puis script
+Finally, the script ```Word-boundaries-information/evaluation_tasks/evaluation_score_tasks.py``` can be used to take these scores for a model as inputs and compute the overall performance for the task.
