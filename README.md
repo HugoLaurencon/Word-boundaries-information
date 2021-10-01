@@ -137,7 +137,8 @@ Make sure to run each cell of the notebook first, because some functions used to
 
 #### Creation of quantized for the training of text models
 
-The file ```Word-boundaries-information/get_quantized/get_quantized.ipynb``` is used to generate quantized for tasks for text models, but it can also be used to generate quantized for the training of text models, which are basically the train, dev, ant test sets of the corpus of LibriSpeech in the format of the text model considered (for example, sequences of phonemes with no boundaries between the words).
+The file ```Word-boundaries-information/get_quantized/get_quantized.ipynb``` is used to generate quantized for tasks for text models, but it can also be used to generate quantized for the training of text models, which are basically the train, dev, ant test sets of the corpus of LibriSpeech in the format of the text model considered (for example, sequences of phonemes with no boundaries between the words for the phone nobound model).
 
 This can be easily done with a small hack of transforming the text corpus of LibriSpeech into the format of a score task, where each line contains two random codes and two sentences of Librispeech. We can then compute the quantized and remove the codes to obtain the results used to train a model.
 
+On this notebook, there are also the codes used to train the different tokenizers for BPE models, and to obtain the different encodings for onehot and dp parse models. 
