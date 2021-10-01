@@ -181,7 +181,21 @@ On this notebook ```Word-boundaries-information/get_quantized/get_quantized.ipyn
 
 ### Evaluations of similarity tasks
 
-simi puis script
+Once we have the quantized, the next step to evaluate a model on a similarity task is to compute for every word used in the task the representations of it that come out of the layers of the language model for all time steps, given the quantized of a word as input.
+
+For this aim, the following command can be used:
+
+```bash
+python zerospeech2021_baseline/scripts/build_BERT_features.py \
+    ../quantized_outputs.txt \
+    ../features/layer4/ \
+    checkpoints/checkpoint_best.pt \
+    --hidden_level 4
+```
+
+and we can do this for every layer, from 0 to 8 for a small roberta.
+
+Finally, the script ```Word-boundaries-information/evaluation_tasks/evaluation_similarity_tasks.py``` can be used to take these representations for a model as inputs (we can choose all the layers we want to consider to build to final representation) as well as the pooling method (max or mean pooling), and compute the overall ABX score for the task.
 
 
 ### Evaluations of score tasks
