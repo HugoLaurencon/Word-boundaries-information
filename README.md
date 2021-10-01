@@ -174,3 +174,16 @@ fairseq-train --fp16 /data-bin \
 where ```--update-freq``` should be equal to ```128/n``` with ```n``` the number of GPU (we used 8 GPU), ```--tokens-per-sample``` and ```--max-positions``` should be almost equal to the maximum number of tokens occurring in a sentence of the training set, ```--total-num-update``` and ```--max-update``` is ```150000``` for the phoneme models and ```50000``` for the word model, ```--warmup-updates``` is  ```--total-num-update/10```.
 
 On this notebook ```Word-boundaries-information/get_quantized/get_quantized.ipynb```, there are also the codes used to train the different tokenizers for BPE models, and to obtain the different encodings for onehot and dp parse models. 
+
+
+
+## Evaluations
+
+### Evaluations of similarity tasks
+
+simi puis script
+
+
+### Evaluations of score tasks
+
+scores puis script
