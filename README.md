@@ -85,3 +85,21 @@ The text is always written in lowercase letters.
 The scripts used to construct the different tasks are in the directory ```Word-boundaries-information/construction_tasks/```.
 
 Note that some scripts are made with random choices inside them, so running twice the same script will produce two different outputs.
+
+
+
+# Evaluation of models on tasks
+
+To evaluate the different models on the tasks, the first step is to compute the quantized tasks, which are the inputs given to the language models (LM).
+The format of the quantized will always be ```code  token_1,token_2,token_3,...```, where the code is unique and allows to identify a test, the code is separated from the tokens by a tabulation, and tokens are separated with each other by a comma.
+
+## Creation of quantized
+
+For the same task, the quantized will be different depending on the model we consider. We can distinguish two main categories, speech models and text models.
+
+### Creation of quantized for speech models
+
+Speech models, like the CPC+kmeans+BERT model, take as input audio files instead of text, so we first need to convert the task in a text format to an audio format. For this aim, we use the Google Text-to-Speech API.
+
+#### Google Text-to-Speech API
+
