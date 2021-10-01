@@ -45,8 +45,6 @@ This repository contains the code used to create the different tasks and evaluat
 
 For almost every file, some commented lines at the end show examples of how functions were called.
 
-The file ```Word-boundaries-information/get_quantized/get_quantized.ipynb``` is a jupyter notebook file, and can be ideally opened with Google Colab, which makes it very easy to install all the dependencies.
-
 A folder containing the checkpoints for every model, the files necessary for the construction of the tasks, the quantized and the scores for every task and model, will be released soon.
 
 
@@ -128,7 +126,13 @@ and the quantized units will be written in the ```quantized_outputs.txt``` file 
 
 ### Creation of quantized for text models
 
+The creation of quantized for text models is done with the jupyter notebook file ```Word-boundaries-information/get_quantized/get_quantized.ipynb```.
 
+It can be ideally opened with Google Colab, which makes it very easy to install all the dependencies written at the beginning of the file.
+
+In this notebook, there are different sections corresponding to the different models as well as examples of commands we used to obtain the quantized.
+
+Make sure to run each cell of the notebook first, because some functions used to obtain quantized for a certain model are often reused in functions to obtain quantized for other models.
 
 
 
