@@ -181,7 +181,7 @@ On this notebook ```Word-boundaries-information/get_quantized/get_quantized.ipyn
 
 ### Evaluations of similarity tasks
 
-Once we have the quantized, the next step to evaluate a model on a similarity task is to compute for every word used in the task the representations of it that come out of the layers of the language model for all time steps, given the quantized of a word as input.
+Once we have the quantized, the next step to evaluate a model on a similarity task is to compute, for every word used in the task, the representations of it that come out of the layers of the language model for all time steps, given the quantized of a word as input.
 
 For this aim, the following command can be used:
 
