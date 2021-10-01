@@ -200,4 +200,24 @@ Finally, the script ```Word-boundaries-information/evaluation_tasks/evaluation_s
 
 ### Evaluations of score tasks
 
+Once we have the quantized, the next step to evaluate a model on a score task is to compute, for every sentence used in the task, the reconstruction loss of this  masked sentence with the same parameters used during the training, averaged for many different masks since tokens are masked randomly.
+
+This can be done with the following command:
+
+```bash
+python /zerospeech2021_baseline/scripts/compute_score_BERT.py \
+    ../quantized_outputs.txt \
+    ../scores.txt \
+    /checkpoints/checkpoint_best.pt \
+    10000 \
+    100 \
+    --batchsen_size 1
+```
+
+where the first number ```10000``` stands for the number of masks to be made for each sentence, the second number ```100``` stands for the number of masked sentences (among ```10000``` here) to be considered in each batch, and ```--batchsen_size``` the number of different initial sentences to be considered in each batch (the total batch size is then ```100*batchsen_size``` here). It is recommended to keep ```--batchsen_size``` to ```1``` to avoid memory issues.
+
+The output format is a ```.txt``` file where each line corresponds to a sentence. Each line starts with the code identifying the sentence, following by the averaged reconstruction loss score and the uncertainty (computed as the division of the standard deviation of the reconstruction loss scores for this sentence by the square root of the number of masks used).
+
+changer param d'entrainement
+
 scores puis script
