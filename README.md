@@ -102,6 +102,9 @@ For the same task, the quantized will be different depending on the model we con
 
 #### Google Text-to-Speech API
 
-Speech models, like the CPC+kmeans+BERT model, take as input audio files instead of text, so we first need to convert the task in a text format to an audio format. For this aim, we use the Google Text-to-Speech API.
+Speech models, like the CPC+kmeans+BERT model, take as input audio files instead of text, so we first need to convert the task in a text format into an audio format. For this aim, we use the Google Text-to-Speech API. All the audios in this study were generated with the trial version of the API.
 
+The way to setup everything and get a key for the API is explained on [this tutorial](https://cloud.google.com/text-to-speech/docs/quickstart-client-libraries).
+
+Once this is done, one can use the script ```Word-boundaries-information/text_to_speech/text_to_speech.py``` to start generating wav files corresponding to the words or sentences of the tests of the given task.
 
